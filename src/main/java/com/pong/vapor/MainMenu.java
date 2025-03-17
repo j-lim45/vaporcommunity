@@ -14,7 +14,7 @@ public class MainMenu extends javax.swing.JFrame {
      * Creates new form MainMenu
      */
     
-    static OnlineAccount userThatIsLoggedIn = new OnlineAccount();              // object that holds the user that is currently logged in
+
     
     
     public MainMenu() {
@@ -148,7 +148,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_settingsButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        userThatIsLoggedIn = new OnlineAccount();   // clears the logged in object
+        staticVar.userThatIsLoggedIn = new OnlineAccount();   // clears the logged in object
         new Login().setVisible(true);               // goes back to login
         dispose();                                  // deletes the current frame
     }//GEN-LAST:event_logOutButtonActionPerformed

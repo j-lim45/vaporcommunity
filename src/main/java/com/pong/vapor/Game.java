@@ -9,7 +9,9 @@ package com.pong.vapor;
  * @author Adriane
  */
 public class Game {
-    int id; String name; String description; double price; String releaseDate; int publisherId; int userRating; double popularity;
+        int id; String name; String description; double price; String releaseDate; int publisherId; int userRating; double popularity;
+    
+    Game(){}
     
     // who needs set or get methods?
     Game(int id, String name, String description, double price, String releaseDate, int publisherId, int userRating, double popularity) {

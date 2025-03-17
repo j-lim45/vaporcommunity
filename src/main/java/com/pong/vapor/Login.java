@@ -208,7 +208,7 @@ public class Login extends javax.swing.JFrame {
             if(rs.isBeforeFirst()){                                             // checks if the username is in the accounts table                
                 if(Password.comparePasswords(rs.getString("password"), passwordField.getText())) {
                     
-                    MainMenu.userThatIsLoggedIn = new OnlineAccount(rs.getInt("account_id"), rs.getString("username"), rs.getDouble("balance"));
+                    staticVar.userThatIsLoggedIn = new OnlineAccount(rs.getInt("account_id"), rs.getString("username"), rs.getDouble("balance"));
                     new MainMenu().setVisible(true);                            // opens main menu
                     dispose();                                                  // closes tab
                 } else {
@@ -234,7 +234,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        CreateAccount dialog = new CreateAccount(new javax.swing.JFrame(), true); 
+        dialog.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
