@@ -221,6 +221,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Username does not exist.", "Error.", JOptionPane.ERROR_MESSAGE);
             }
             
+            conn.close();
         } catch (Exception e ) {
             e.printStackTrace();
         }

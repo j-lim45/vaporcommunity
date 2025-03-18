@@ -4,6 +4,10 @@
  */
 package com.pong.vapor;
 
+import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -149,6 +153,49 @@ public class Cart extends javax.swing.JDialog {
         
         if (staticVar.userThatIsLoggedIn.balance < totalCartPrice) {
             JOptionPane.showMessageDialog(null, "You have insufficient balance.", "Failed", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            Connection conn = null;
+            try {
+                conn = DriverManager.getConnection("jdbc:sqlite:vapordb.db");
+                
+                PreparedStatement st = conn.prepareStatement("INSERT INTO receipts(account_id) VALUES (?)");
+                st.setInt(1, staticVar.userThatIsLoggedIn.id);
+                st.executeUpdate();
+                
+                ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM receipts ORDER BY receipt_id DESC LIMIT 1");
+                for (Game g : staticVar.userCart) {
+                    
+                    st = conn.prepareStatement("INSERT INTO sales(receipt_id, game_id) VALUES (?, ?)");
+                    st.setInt(1, rs.getInt("receipt_id"));
+                    st.setInt(2, g.id);
+                    st.executeUpdate();
+                    
+                    // Normalize?
+                    st = conn.prepareStatement("INSERT INTO ownerships(account_id, game_id) VALUES (?, ?)");
+                    st.setInt(1, staticVar.userThatIsLoggedIn.id);
+                    st.setInt(2, g.id);
+                    st.executeUpdate();
+                    
+   
+                }
+                
+                    st = conn.prepareStatement("UPDATE accounts SET balance=? WHERE account_id=?");
+                    staticVar.userThatIsLoggedIn.balance -= totalCartPrice;
+                    
+                    System.out.println(staticVar.userThatIsLoggedIn.balance);
+                    st.setDouble(1, staticVar.userThatIsLoggedIn.balance);
+                    st.setInt(2, staticVar.userThatIsLoggedIn.id);
+                    st.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Purchase successful.", "Success", JOptionPane.PLAIN_MESSAGE);
+                    
+                    staticVar.userCart = new ArrayList<Game>();
+                    conn.close();
+                    dispose();
+            } catch (Exception e) {
+                e.printStackTrace();
+ 
+            }
         }
     }//GEN-LAST:event_purchaseButtonActionPerformed
 

@@ -54,6 +54,8 @@ public class Store extends javax.swing.JFrame {
             while (rs.next()) {
                 staticVar.storeResults.add(new Game(rs.getInt("game_id"), rs.getString("name"), rs.getString("description"), rs.getDouble("price"),rs.getString("release_date"), rs.getInt("developer_id"), rs.getInt("user_rating"), rs.getDouble("popularity")));
             }
+            
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,9 +99,13 @@ public class Store extends javax.swing.JFrame {
             while (rs.next()) {
                 staticVar.storeResults.add(new Game(rs.getInt("game_id"), rs.getString("name"), rs.getString("description"), rs.getDouble("price"),rs.getString("release_date"), rs.getInt("developer_id"), rs.getInt("user_rating"), rs.getDouble("popularity")));
             }
+            
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+
     }
     //---------------------------------------------------------------------------------------------------------------------//
 
@@ -169,7 +175,7 @@ public class Store extends javax.swing.JFrame {
 
         userBalance.setFont(new java.awt.Font("Lato Light", 1, 24)); // NOI18N
         userBalance.setForeground(new java.awt.Color(12, 12, 12));
-        userBalance.setText("$" + Double.toString(staticVar.userThatIsLoggedIn.balance));
+        userBalance.setText("$ " + String.valueOf(staticVar.userThatIsLoggedIn.balance));
 
         backButton.setFont(new java.awt.Font("Lato", 1, 24)); // NOI18N
         backButton.setText("Back");

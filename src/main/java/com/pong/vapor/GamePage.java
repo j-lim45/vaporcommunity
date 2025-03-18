@@ -31,7 +31,11 @@ public class GamePage extends javax.swing.JDialog {
             
             ResultSet rs = conn.createStatement().executeQuery("SELECT publisher_name FROM games JOIN publishers ON games.developer_id=publishers.publisher_id WHERE game_id=" + String.valueOf(staticVar.previewedGame.id));
             
-            return rs.getString("publisher_name");
+            String publisherName = rs.getString("publisher_name");
+            conn.close();
+            return publisherName;
+            
+
         } catch (Exception e) {
             e.printStackTrace();
         }

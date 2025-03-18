@@ -134,7 +134,8 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     private void libraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libraryButtonActionPerformed
-        // TODO add your handling code here:
+        new Library().setVisible(true);        
+        dispose();                                  // deletes the current frame
     }//GEN-LAST:event_libraryButtonActionPerformed
 
     private void storeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeButtonActionPerformed
