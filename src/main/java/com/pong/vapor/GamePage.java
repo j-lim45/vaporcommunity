@@ -73,17 +73,16 @@ public class GamePage extends javax.swing.JDialog {
         gameName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         addToCartButton = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
-        gamePopularity = new javax.swing.JLabel();
+        gameGenre = new javax.swing.JLabel();
         gamePopularity2 = new javax.swing.JLabel();
-        gamePopularity1 = new javax.swing.JLabel();
+        gameRating = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        gameDeveloperName.setFont(new java.awt.Font("Lato Light", 0, 18)); // NOI18N
+        gameDeveloperName.setFont(new java.awt.Font("Lato Semibold", 0, 18)); // NOI18N
         gameDeveloperName.setForeground(new java.awt.Color(12, 12, 12));
         gameDeveloperName.setText(displayDevName());
         gameDeveloperName.setToolTipText("");
@@ -118,32 +117,24 @@ public class GamePage extends javax.swing.JDialog {
             }
         });
 
-        backButton.setFont(new java.awt.Font("Lato", 1, 24)); // NOI18N
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-
-        gamePopularity.setFont(new java.awt.Font("Lato Light", 0, 18)); // NOI18N
-        gamePopularity.setForeground(new java.awt.Color(12, 12, 12));
-        gamePopularity.setText(displayGenre());
-        gamePopularity.setToolTipText("");
+        gameGenre.setFont(new java.awt.Font("Lato Light", 0, 18)); // NOI18N
+        gameGenre.setForeground(new java.awt.Color(12, 12, 12));
+        gameGenre.setText(displayGenre());
+        gameGenre.setToolTipText("");
 
         gamePopularity2.setFont(new java.awt.Font("Lato Light", 0, 18)); // NOI18N
         gamePopularity2.setForeground(new java.awt.Color(12, 12, 12));
         gamePopularity2.setText("Popularity: " + String.valueOf(staticVar.previewedGame.popularity));
         gamePopularity2.setToolTipText("");
 
-        gamePopularity1.setFont(new java.awt.Font("Lato Light", 0, 18)); // NOI18N
-        gamePopularity1.setForeground(new java.awt.Color(12, 12, 12));
-        gamePopularity1.setText("User Rating: " + String.valueOf(staticVar.previewedGame.userRating));
-        gamePopularity1.setToolTipText("");
+        gameRating.setFont(new java.awt.Font("Lato Light", 0, 18)); // NOI18N
+        gameRating.setForeground(new java.awt.Color(12, 12, 12));
+        gameRating.setText("User Rating: " + String.valueOf(staticVar.previewedGame.userRating));
+        gameRating.setToolTipText("");
 
         jEditorPane1.setContentType("text/html"); // NOI18N
         jEditorPane1.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        jEditorPane1.setText("<html><div style=\"font-family:Lato;font-size:18px;\"" + staticVar.previewedGame.description + "</div></html>");
+        jEditorPane1.setText("<html><div style=\"font-family:Lato;font-size:18px;width:625px;\"" + staticVar.previewedGame.description + "</div></html>");
         jEditorPane1.setCaretPosition(0);
         jEditorPane1.setDisabledTextColor(new java.awt.Color(30, 30, 30));
         jEditorPane1.setEnabled(false);
@@ -163,26 +154,27 @@ public class GamePage extends javax.swing.JDialog {
                                 .addComponent(gameDeveloperName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(510, 510, 510))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(gamePopularity, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(gamePopularity2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(gamePopularity1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(addToCartButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(backButton)
-                                .addGap(11, 11, 11)))
+                        .addComponent(gameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(gameGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addToCartButton)
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(gamePopularity2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gameRating, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,26 +185,21 @@ public class GamePage extends javax.swing.JDialog {
                 .addComponent(gameDeveloperName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gamePopularity, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gamePopularity2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gamePopularity1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addToCartButton)
-                    .addComponent(backButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gamePopularity2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gameRating, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addToCartButton)
+                    .addComponent(gameGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        dispose();                                  // deletes the current frame
-    }//GEN-LAST:event_backButtonActionPerformed
 
     private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
         Connection conn = null;
@@ -300,12 +287,11 @@ public class GamePage extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToCartButton;
-    private javax.swing.JButton backButton;
     private javax.swing.JLabel gameDeveloperName;
+    private javax.swing.JLabel gameGenre;
     private javax.swing.JLabel gameName;
-    private javax.swing.JLabel gamePopularity;
-    private javax.swing.JLabel gamePopularity1;
     private javax.swing.JLabel gamePopularity2;
+    private javax.swing.JLabel gameRating;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
