@@ -4,8 +4,6 @@
  */
 package com.pong.vapor;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 public class staticVar {

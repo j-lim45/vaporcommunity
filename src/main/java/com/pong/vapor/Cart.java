@@ -12,10 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Adriane
- */
+
 public class Cart extends javax.swing.JDialog {
 
     /**
