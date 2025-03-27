@@ -38,8 +38,8 @@ public class Settings extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         currentBalance1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
         librarby = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,20 +185,19 @@ public class Settings extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Payment", jPanel1);
 
-        backButton.setFont(new java.awt.Font("Lato", 1, 24)); // NOI18N
+        librarby.setFont(new java.awt.Font("Lato Semibold", 1, 48)); // NOI18N
+        librarby.setForeground(new java.awt.Color(12, 12, 12));
+        librarby.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        librarby.setText("Settings");
+        librarby.setToolTipText("");
+
+        backButton.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
-        jTabbedPane1.addTab("BACK", backButton);
-
-        librarby.setFont(new java.awt.Font("Lato Semibold", 1, 48)); // NOI18N
-        librarby.setForeground(new java.awt.Color(12, 12, 12));
-        librarby.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        librarby.setText("Settings");
-        librarby.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,14 +207,20 @@ public class Settings extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1)
-                    .addComponent(librarby, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(librarby, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(librarby)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(librarby)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -223,11 +228,6 @@ public class Settings extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        new MainMenu().setVisible(true);               // goes back to main menu
-        dispose();                                  // deletes the current frame
-    }//GEN-LAST:event_backButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         AddFunds dialog = new AddFunds(new javax.swing.JFrame(), true);
@@ -248,6 +248,11 @@ public class Settings extends javax.swing.JFrame {
         ChangePassword dialog = new ChangePassword(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
     }//GEN-LAST:event_changePasswordActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        new MainMenu().setVisible(true);               // goes back to main menu
+        dispose();                                  // deletes the current frame
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments

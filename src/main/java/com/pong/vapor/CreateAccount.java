@@ -10,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Adriane
- */
 public class CreateAccount extends javax.swing.JDialog {
 
     /**
@@ -151,13 +147,15 @@ public class CreateAccount extends javax.swing.JDialog {
     }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        String inputtedUsername=usernameField.getText();                        // gets username inputted from the username field
+        String inputtedUsername = usernameField.getText();                      // gets username inputted from the username field
         
         Connection conn = null;
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:vapordb.db");       // starts a connection with the database file
             
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM accounts WHERE username='" + inputtedUsername + "'");     // finds the row of the inputted username if it even exists          
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM accounts WHERE username=?");
+            st.setString(1, inputtedUsername);
+            ResultSet rs = st.executeQuery();                                   // finds the row of the inputted username if it even exists          
 
             if(rs.isBeforeFirst()){                                             // checks if the username is in the accounts table   
                 JOptionPane.showMessageDialog(null, "Username already exists.", "Error", JOptionPane.WARNING_MESSAGE);
@@ -165,7 +163,7 @@ public class CreateAccount extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Please enter a password.", "Error", JOptionPane.WARNING_MESSAGE);
             } else {
                 if (passwordField.getText().equals(repasswordField.getText())) {
-                    PreparedStatement st = conn.prepareStatement("INSERT INTO accounts(username, password, balance) VALUES (?, ?, ?)");
+                    st = conn.prepareStatement("INSERT INTO accounts(username, password, balance) VALUES (?, ?, ?)");
                     st.setString(1, inputtedUsername);
                     st.setString(2, Password.encryptPassword(repasswordField.getText()));
                     st.setDouble(3, 0);

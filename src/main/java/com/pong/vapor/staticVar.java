@@ -8,16 +8,12 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-/**
- *
- * @author Adriane
- */
 public class staticVar {
     
         // variables where i don't know how to transfer them towards other tabs without using global namespace
         static ArrayList<Game> storeResults = new ArrayList<Game>();                // stores the results of the store page queried
         static OnlineAccount userThatIsLoggedIn = new OnlineAccount();              // object that holds the user that is currently logged in
         static Game previewedGame = new Game();                                     // game previewed in store or library
-        static ArrayList<Game> userCart = new ArrayList<Game>();                    // games currently in the cart
-        static int receiptIdSelected = 0;
+        static ArrayList<Game> userCart = new ArrayList<Game>();                    // games currently in the cart of user
+        static int receiptIdSelected = 0;                                           // receipt_id selected to display in individual sales page
 }

@@ -4,16 +4,10 @@
  */
 package com.pong.vapor;
 
-/**
- *
- * @author Adriane
- */
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class Store extends javax.swing.JFrame {
@@ -63,7 +57,7 @@ public class Store extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    //---------------------------------------------------------------------------------------------------------------------//
+    //----------------  -----------------------------------------------------------------------------------------------------//
     // changes the order of the table display if there is a filter
     public static DefaultTableModel initStoreTableModel(String searchResult, String filterSelection) {         
         DefaultTableModel storeTableModel = new DefaultTableModel();
@@ -326,6 +320,7 @@ public class Store extends javax.swing.JFrame {
         dispose();                                  // deletes the current frame
     }//GEN-LAST:event_backButtonActionPerformed
 
+    // gets the game id of the clicked game on its row to display on its game page
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         java.awt.Point pointClicked = evt.getPoint();
         int row = jTable1.rowAtPoint(pointClicked);
@@ -336,6 +331,7 @@ public class Store extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_jTable1MouseClicked
 
+    // queries the games table based on filter inputs
     private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
         jTable1.setModel(initStoreTableModel(searchField.getText(), orderComboBox.getSelectedItem().toString()));
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(600);

@@ -4,10 +4,6 @@
  */
 package com.pong.vapor;
 
-/**
- *
- * @author Adriane
- */
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -57,7 +53,7 @@ public class Library extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setFont(new java.awt.Font("Lato", 1, 24)); // NOI18N
+        jTable2.setFont(new java.awt.Font("Meiryo", 1, 24)); // NOI18N
         jTable2.setModel(initLibraryTableModel());
         jTable2.setEnabled(false);
         jTable2.setRowHeight(40);
@@ -103,6 +99,7 @@ public class Library extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
+    // loops through the ownerships of a user to place in library table
     public static DefaultTableModel initLibraryTableModel() {
         DefaultTableModel libraryTableModel = new DefaultTableModel();
 
@@ -126,9 +123,6 @@ public class Library extends javax.swing.JFrame {
         } catch (Exception e) {
            e.printStackTrace();
         }
-
-        // Iterates through the array list of games to place in the table model (Creates a new row for each game)
-
 
             return libraryTableModel;
     }

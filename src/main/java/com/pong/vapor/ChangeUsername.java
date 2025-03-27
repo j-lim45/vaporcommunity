@@ -10,10 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
-/**
- *
- * @author Adriane
- */
+
 public class ChangeUsername extends javax.swing.JDialog {
 
     /**
@@ -40,7 +37,6 @@ public class ChangeUsername extends javax.swing.JDialog {
         newUsernameField = new javax.swing.JTextField();
         confirmNewUsernameField = new javax.swing.JTextField();
         changeUsernameLabel = new javax.swing.JLabel();
-        backButton = new javax.swing.JButton();
         changeUsernameButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -80,14 +76,6 @@ public class ChangeUsername extends javax.swing.JDialog {
         changeUsernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         changeUsernameLabel.setText("Change Username");
 
-        backButton.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-
         changeUsernameButton.setBackground(new java.awt.Color(0, 102, 102));
         changeUsernameButton.setFont(new java.awt.Font("Lato", 1, 24)); // NOI18N
         changeUsernameButton.setForeground(new java.awt.Color(204, 204, 204));
@@ -109,26 +97,19 @@ public class ChangeUsername extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(changeUsernameLabel)
-                            .addComponent(confirmNewUsernameLabel)
-                            .addComponent(currUsernameLAbel)
-                            .addComponent(currUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newUsernameLabel)
-                            .addComponent(newUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(confirmNewUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 84, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(changeUsernameLabel)
+                    .addComponent(confirmNewUsernameLabel)
+                    .addComponent(currUsernameLAbel)
+                    .addComponent(currUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newUsernameLabel)
+                    .addComponent(newUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmNewUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(backButton)
-                .addGap(5, 5, 5)
+                .addGap(34, 34, 34)
                 .addComponent(changeUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(currUsernameLAbel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,10 +143,6 @@ public class ChangeUsername extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmNewUsernameFieldActionPerformed
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        dispose();                                  // deletes the current frame
-    }//GEN-LAST:event_backButtonActionPerformed
-
     private void changeUsernameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeUsernameButtonActionPerformed
         String inputtedCurrUsername = currUsernameField.getText();
         String inputtedNewUsername = newUsernameField.getText();
@@ -181,7 +158,7 @@ public class ChangeUsername extends javax.swing.JDialog {
             }
              
             else if (staticVar.userThatIsLoggedIn.username.equals(inputtedCurrUsername)) {   // checks if inputted username matches the one in database
-                if (inputtedNewUsername.equals(inputtedConfirmNewUsername)) {           // checks if both new password inputted matches
+                if (inputtedNewUsername.equals(inputtedConfirmNewUsername)) {           // checks if both new usernames inputted matches
                     
                     PreparedStatement st = conn.prepareStatement("SELECT * FROM accounts WHERE username=?");    // checks if username is unique
                     st.setString(1, inputtedConfirmNewUsername);
@@ -261,7 +238,6 @@ public class ChangeUsername extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
     private javax.swing.JButton changeUsernameButton;
     private javax.swing.JLabel changeUsernameLabel;
     private javax.swing.JTextField confirmNewUsernameField;

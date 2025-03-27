@@ -7,12 +7,9 @@ package com.pong.vapor;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author Adriane
- */
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -203,7 +200,9 @@ public class Login extends javax.swing.JFrame {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:vapordb.db");       // starts a connection with the database file
             
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM accounts WHERE username='" + inputtedUsername + "'");     // finds the row of the inputted username if it even exists          
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM accounts WHERE username=?");
+            st.setString(1, inputtedUsername);
+            ResultSet rs = st.executeQuery();     // finds the row of the inputted username if it even exists          
 
             if(rs.isBeforeFirst()){                                             // checks if the username is in the accounts table                
                 if(Password.comparePasswords(rs.getString("password"), passwordField.getText())) {

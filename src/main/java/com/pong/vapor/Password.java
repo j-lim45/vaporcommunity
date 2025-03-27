@@ -6,10 +6,6 @@ package com.pong.vapor;
 
 import java.util.Base64;
 
-/**
- *
- * @author Adriane
- */
 public class Password {
     // Safest encryption method ever designed
 

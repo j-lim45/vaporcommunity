@@ -10,10 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
-/**
- *
- * @author Adriane
- */
+
 public class ChangePassword extends javax.swing.JDialog {
 
     /**
@@ -34,7 +31,6 @@ public class ChangePassword extends javax.swing.JDialog {
     private void initComponents() {
 
         changeUsernameLabel = new javax.swing.JLabel();
-        backButton = new javax.swing.JButton();
         currPasswordLabel = new javax.swing.JLabel();
         newPasswordLabel = new javax.swing.JLabel();
         confirmNewPasswordLabel = new javax.swing.JLabel();
@@ -50,22 +46,14 @@ public class ChangePassword extends javax.swing.JDialog {
         changeUsernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         changeUsernameLabel.setText("Change Password");
 
-        backButton.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-
         currPasswordLabel.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
-        currPasswordLabel.setText("Current username");
+        currPasswordLabel.setText("Current password");
 
         newPasswordLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        newPasswordLabel.setText("New username");
+        newPasswordLabel.setText("New Password");
 
         confirmNewPasswordLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        confirmNewPasswordLabel.setText("Confirm new username");
+        confirmNewPasswordLabel.setText("Confirm new password");
 
         changePasswordButton.setBackground(new java.awt.Color(0, 102, 102));
         changePasswordButton.setFont(new java.awt.Font("Lato", 1, 24)); // NOI18N
@@ -105,9 +93,6 @@ public class ChangePassword extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(confirmNewPasswordLabel)
-                    .addComponent(currPasswordLabel)
-                    .addComponent(newPasswordLabel)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(confirmNewPasswordField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +101,13 @@ public class ChangePassword extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(changeUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(97, 97, 97))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(confirmNewPasswordLabel)
+                            .addComponent(currPasswordLabel)
+                            .addComponent(newPasswordLabel))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(176, 176, 176)
                 .addComponent(changePasswordButton)
@@ -127,11 +116,8 @@ public class ChangePassword extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(changeUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(backButton))
+                .addGap(34, 34, 34)
+                .addComponent(changeUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(currPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -152,10 +138,6 @@ public class ChangePassword extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        dispose();                                  // deletes the current frame
-    }//GEN-LAST:event_backButtonActionPerformed
-
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         String inputtedCurrPassword = currPasswordField.getText();
         String inputtedNewPassword = newPasswordField.getText();
@@ -173,14 +155,19 @@ public class ChangePassword extends javax.swing.JDialog {
             } else if (rs.getString("password").equals(Password.encryptPassword(inputtedCurrPassword))) {   // checks if inputted password matches the one in database
                 if (inputtedNewPassword.equals(inputtedConfirmNewPassword)) {           // checks if both new password inputted matches
 
-                    PreparedStatement st = conn.prepareStatement("UPDATE accounts SET password=? WHERE account_id=?");
-                    st.setString(1, Password.encryptPassword(inputtedConfirmNewPassword));
-                    st.setInt(2, staticVar.userThatIsLoggedIn.id);
-                    st.executeUpdate();
+                    if (Password.comparePasswords(rs.getString("password"), inputtedConfirmNewPassword)) {  // checks if inputted new password is a duplicate of old password
+                        JOptionPane.showMessageDialog(null, "New password should be different from old password.", "Error", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        PreparedStatement st = conn.prepareStatement("UPDATE accounts SET password=? WHERE account_id=?");
+                        st.setString(1, Password.encryptPassword(inputtedConfirmNewPassword));
+                        st.setInt(2, staticVar.userThatIsLoggedIn.id);
+                        st.executeUpdate();
 
-                    JOptionPane.showMessageDialog(null, "Password updated.", "Success", JOptionPane.PLAIN_MESSAGE);
-                    conn.close();
-                    dispose();
+                        JOptionPane.showMessageDialog(null, "Password updated.", "Success", JOptionPane.PLAIN_MESSAGE);
+                        conn.close();
+                        dispose();
+                    }
+
 
                 } else {
                     JOptionPane.showMessageDialog(null, "New passwords do not match.", "Error", JOptionPane.WARNING_MESSAGE);
@@ -191,6 +178,7 @@ public class ChangePassword extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Password is incorrect.", "Error", JOptionPane.WARNING_MESSAGE);
             }
 
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -252,7 +240,6 @@ public class ChangePassword extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JLabel changeUsernameLabel;
     private javax.swing.JPasswordField confirmNewPasswordField;

@@ -4,10 +4,6 @@
  */
 package com.pong.vapor;
 
-/**
- *
- * @author Adriane
- */
 public class OnlineAccount {
     int id; String username; double balance;
     

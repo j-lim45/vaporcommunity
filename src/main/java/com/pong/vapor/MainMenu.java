@@ -4,10 +4,6 @@
  */
 package com.pong.vapor;
 
-/**
- *
- * @author Adriane
- */
 public class MainMenu extends javax.swing.JFrame {
 
     /**

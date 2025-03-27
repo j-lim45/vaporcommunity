@@ -179,8 +179,6 @@ public class Cart extends javax.swing.JDialog {
                         st.setInt(1, staticVar.userThatIsLoggedIn.id);
                         st.setInt(2, g.id);
                         st.executeUpdate();
-
-
                     }
 
                         st = conn.prepareStatement("UPDATE accounts SET balance=? WHERE account_id=?");

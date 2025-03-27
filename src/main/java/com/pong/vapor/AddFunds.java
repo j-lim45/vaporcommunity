@@ -36,7 +36,6 @@ public class AddFunds extends javax.swing.JDialog {
         addFundsField = new javax.swing.JTextField();
         dollarSign = new javax.swing.JLabel();
         addFundsButton = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -67,14 +66,6 @@ public class AddFunds extends javax.swing.JDialog {
             }
         });
 
-        backButton.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,18 +81,13 @@ public class AddFunds extends javax.swing.JDialog {
                         .addComponent(addFundsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(addFundsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(backButton)))
+                        .addComponent(addFundsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(addFundsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,10 +138,6 @@ public class AddFunds extends javax.swing.JDialog {
 
     }//GEN-LAST:event_addFundsButtonActionPerformed
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-          dispose();                                  // deletes the current frame
-    }//GEN-LAST:event_backButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -202,7 +184,6 @@ public class AddFunds extends javax.swing.JDialog {
     private javax.swing.JButton addFundsButton;
     private javax.swing.JTextField addFundsField;
     private javax.swing.JLabel addFundsLabel;
-    private javax.swing.JButton backButton;
     private javax.swing.JLabel dollarSign;
     // End of variables declaration//GEN-END:variables
 }
